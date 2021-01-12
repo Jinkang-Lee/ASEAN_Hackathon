@@ -4,5 +4,7 @@ C200 is a module where we learn about hackathons in school and brainstorm soluti
 
 Requirements:
 
-Ease of setting visitation rules; and
-Live visitor number per bed view at: a. Front counters in wards; and b. Screening counters.
+1. Ease of setting visitation rules; and
+2. Live visitor number per bed view at:
+  a. Front counters in wards
+  b. Screening counters.
