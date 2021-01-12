@@ -123,7 +123,7 @@ namespace C200.Controllers
 
             //INSERT visitor into visitor database
             string sql = @"INSERT INTO Visitor(NRIC, full_name, phone, pin_num) VALUES('{0}', '{1}', '{2}', '{3}')";
-            string insert = String.Format(sql, VisitorNRIC, VisitorName.EscQuote(), VisitorMobile, pin_num);
+            string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile, pin_num);
             int count = DBUtl.ExecSQL(insert);
 
             //INSERT visit id and pin number from Visitor table to visitation table
