@@ -1,0 +1,79 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/userAcc.css" />
+</head>
+
+<body>
+
+    @await Html.PartialAsync("NavBarAcc")
+
+    <form method="post" action="/FarrerPark/HomeNoAcc">
+        <section id="banner">
+
+            <div class="container bg-light" id="account">
+
+
+                <div class="row text-center" id="myprofile">
+                    <div class="col-sm-12">
+                        <h1><b> - MY PROFILE - </b></h1>
+                    </div>
+                </div>
+
+
+                <div class="form-group row p-3" id="contents">
+                    <label class="control-label offset-sm-2 col-sm-2" for="Name" id="lbl">Name: </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Name" id="Name" class="form-control" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row p-3">
+                    <label class="control-label offset-sm-2 col-sm-2" for="NRIC" id="lbl">NRIC: </label>
+                    <div class="col-sm-6">
+                        <input type="text" name="NRIC" id="NRIC" class="form-control" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row p-3">
+                    <label class="control-label offset-sm-2 col-sm-2" for="DOB" id="lbl">DOB :</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Name" id="DOB" class="form-control" readonly />
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group row p-3">
+                    <div class="col-md-12 text-center p-3">
+                        <button type="submit" id="LogOut" name="LogOut" class="btn btn-primary btn-lg">   Log Out   </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>S
+    </form>
+
+        
+
+
+
+        <div class="container" id="spacing">
+
+        </div>
+
+
+
+
+        @await Html.PartialAsync("CovidMsg")
+</body>
+

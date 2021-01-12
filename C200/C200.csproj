@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="https://json.schemastore.org/nightwatch" /></VisualStudio></ProjectExtensions>
+
+
+	<ItemGroup>
+		<PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AWSLambda_RekogTest1\AWSLambda_RekogTest1.csproj" />
+	</ItemGroup>
+
+</Project>

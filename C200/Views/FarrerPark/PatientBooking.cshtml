@@ -1,0 +1,79 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/PatientBooking.css" />
+</head>
+
+<body>
+
+    @await Html.PartialAsync("NavBarAcc")
+
+    <section id="banner">
+
+        <div class="container bg-light" id="booking">
+            <div class="row text-center p-3" id="visitorinfo">
+                <div class="col-sm-12">
+                    <h1><b> - VISITOR INFO - </b></h1>
+                </div>
+            </div>
+
+
+            <div class="form-group row p-3" id="contents">
+                <label class="control-label offset-sm-2 col-sm-2" for="Name" id="lbl">Name: </label>
+                <div class="col-sm-6">
+                    <input type="text" name="Name" id="Name" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row p-3" id="contents">
+                <label class="control-label offset-sm-2 col-sm-2" for="Ward" id="lbl">Ward: </label>
+                <div class="col-sm-6">
+                    <input type="text" name="Ward" id="Ward" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row p-3" id="contents">
+                <label class="control-label offset-sm-2 col-sm-2" for="BedNo" id="lbl">Bed Number: </label>
+                <div class="col-sm-6">
+                    <input type="text" name="BedNo" id="BedNo" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row p-3" id="contents">
+                <label class="control-label offset-sm-2 col-sm-2" for="DateTime" id="lbl">DateTime: </label>
+                <div class="col-sm-6">
+                    <select name="Slot" id="Slot" class="form-control">
+                        <option value="">-- SELECT --</option>
+                        <option value="TodayD">Day1 Slot1</option>
+                        <option value="TodayN">Day1 Slot2</option>
+                        <option value="TmrD">D2 Slot1</option>
+                        <option value="TmrN">D2 Slot2</option>
+                        <option value="Tmr+1D">Day3 Slot1</option>
+                        <option value="Tmr+1N">Day3 Slot2</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row text-center" id="nextbtn">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary btn-lg">Proceed</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="container" id="spacing">
+
+    </div>
+
+    @await Html.PartialAsync("CovidMsg")
+</body>

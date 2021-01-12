@@ -1,0 +1,47 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+#navbarTop {
+    color:black;
+    background: rgb(16,103,230);
+    background: linear-gradient(90deg, rgba(16,103,230,1) 0%, rgba(188,0,255,1) 63%);
+}
+
+
+#banner {
+    height: 800px;
+    color: black;
+    padding-top: 5%;
+    background: rgb(16,103,230);
+    background: linear-gradient(90deg, rgba(16,103,230,1) 0%, rgba(188,0,255,1) 63%);
+}
+
+#booking
+{
+    height: 450px;
+}
+
+#lbl
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#nextbtn button {
+    font-size: 25px;
+}
+
+#backbtn button {
+    font-size: 25px;
+}
+
+#spacing
+{
+    height:100px;
+}

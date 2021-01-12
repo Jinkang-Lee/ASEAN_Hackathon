@@ -1,0 +1,44 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Home.css" />
+</head>
+
+<body>
+    @await Html.PartialAsync("NavBar")
+
+    <!--Top-Image-->
+    <section id="banner">
+
+
+
+
+        <div class="container" id="LogSuccess">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>---Login Success---</h1>
+                </div>
+            </div>
+
+            <!--MING HAO LINK THIS ACTION-->
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="post" action="/FarrerPark/">
+                        <button class="btn btn-primary btn-lg" type="submit">Click Here to Login</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    @await Html.PartialAsync("CovidMsg")
+
+</body>

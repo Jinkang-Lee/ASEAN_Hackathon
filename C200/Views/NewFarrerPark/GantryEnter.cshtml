@@ -1,0 +1,66 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Visitation2.css" />
+</head>
+
+
+<body>
+
+    <!--Navigation Bar-->
+    @await Html.PartialAsync("navbar")
+
+    <section id="banner">
+        <form method="post" action="/NewFarrerPark/GantryEnterPost">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center" id="entry-text">Visitation Entry</h2>
+
+                            <div class="form-group row p-3" id="contents">
+                                <label class="control-label offset-sm-1 col-sm-3" for="Pin" id="lbl">Enter Pin: </label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="Pin" id="Pin" class="form-control" placeholder="Pin Number" maxlength="6" />
+                                </div>
+                            </div>
+
+                            <div class="row text-center p-3" id="nextbtn">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary btn-lg">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+
+
+            <!-- Error Message-->
+            <div class="offset-sm-3 col-sm-6 ">
+                @if (ViewData["Message"] != null)
+                {
+                    <div class="alert alert-warning">
+                        @ViewData["Message"]
+                    </div>
+                }
+
+            </div>
+        </form>
+    </section>
+
+
+
+    @await Html.PartialAsync("CovidMsg")
+</body>

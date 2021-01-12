@@ -1,0 +1,23 @@
+
+{
+    "Information" : [
+        "This file provides default values for the deployment wizard inside Visual Studio and the AWS Lambda commands added to the .NET Core CLI.",
+        "To learn more about the Lambda commands with the .NET Core CLI execute the following command at the command line in the project root directory.",
+        "dotnet lambda help",
+        "All the command line options for the Lambda command can be specified in this file."
+    ],
+    "profile"     : "Rekog_User1",
+    "region"      : "ap-southeast-1",
+    "configuration" : "Release",
+    "framework"     : "netcoreapp3.1",
+    "function-runtime" : "dotnetcore3.1",
+    "function-memory-size" : 256,
+    "function-timeout"     : 30,
+    "function-handler"     : "AWSLambda1::AWSLambda1.Function::FunctionHandler",
+    "function-name"        : "Test1",
+    "package-type"         : "Zip",
+    "function-role"        : "arn:aws:iam::123709590777:role/lambda_exec_Test1-1",
+    "tracing-mode"         : "PassThrough",
+    "environment-variables" : "\"MinConfidence\"=\"90\"",
+    "image-tag"             : ""
+}

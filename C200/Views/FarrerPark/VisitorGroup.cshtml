@@ -1,0 +1,73 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/VisitorGroup.css" />
+</head>
+
+<body>
+
+    @await Html.PartialAsync("NavBarAcc")
+
+    <section id="banner">
+
+        <div class="container bg-light" id="group">
+            <div class="row text-center p-3" id="groupinfo">
+                <div class="col-sm-12">
+                    <h1><b> - Additional Visitors - </b></h1>
+                </div>
+            </div>
+
+
+            <div class="form-group row p-3" id="contents">
+
+                <div class="col-sm-6">
+                    <div class="form-group row p-3" id="contents">
+                        <label class="control-label col-sm-3" for="Ward" id="lbl">Visior Name: </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" id="Name" class="form-control" placeholder="Name#0000" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group row p-3" id="contents">
+                        <label class="control-label col-sm-3" for="Ward" id="lbl">Visior Name: </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" id="Name" class="form-control" placeholder="Name#0000" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            
+
+            <div class="row text-center" id="confirmbtn">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary btn-lg">Confirm</button>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <div class="container" id="spacing">
+
+    </div>
+
+
+
+
+    @await Html.PartialAsync("CovidMsg")
+</body>
+

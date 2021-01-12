@@ -1,0 +1,36 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+#myprofile
+{
+    font-weight: 900;
+    padding: 30px;
+}
+
+#lbl
+{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#account {
+    margin-top: 30px;
+    color: black;
+    height: 500px;
+    width: 800px;
+    border-radius: .5rem !important;
+}
+
+
+
+#spacing {
+    height: 200px;
+}
+
+

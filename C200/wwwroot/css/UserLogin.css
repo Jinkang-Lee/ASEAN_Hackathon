@@ -1,0 +1,57 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+#banner
+{
+    height: 780px !important;
+}
+
+#info-card {
+    height: 600px;
+    width: 100px;
+    border-radius: .5rem !important
+}
+
+#cardbody
+{
+    margin-top: 0px;
+}
+
+
+#login-container {
+    height: 900px;
+    width: 1200px;
+    
+}
+
+#loginSection {
+    height: 700px;
+    width: 600px;
+    
+}
+
+#login-text h1 {
+    font-weight: 900;
+    color: black;
+}
+
+#loginbtn button
+{
+    font-size: 22px;
+}
+
+#NoAccount p
+{
+    color: black;
+}
+
+#spacing
+{
+    height: 200px;
+}

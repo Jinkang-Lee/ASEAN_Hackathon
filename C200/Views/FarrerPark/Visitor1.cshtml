@@ -1,0 +1,89 @@
+﻿
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Visitor1.css"/>
+</head>
+
+<body>
+
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="navbarTop">
+        <div class="container-fluid">
+
+            <!--Farrer Park Logo-->
+            <a class="navbar-brand" href="#"> <img src="~/images/Logo.PNG" /> </a>
+
+            <!--NavBar button icon-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--NavBar Contents-->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Visitor</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container bg-light text-center" style="height: 150px;">
+        
+    </div>
+
+    <div class="container bg-light" style="height: 450px;">
+
+        <h1 class="text-center">Welcome to Visitor Registration</h1>
+
+        <form action="/Register/Confirm" method="post">
+            <div class="form-group row">
+                <label for="Name" class="control-label col-sm-2 offset-3">Name: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="Name" id="Name" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="NRIC" class="control-label col-sm-2 offset-3">NRIC: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="NRIC" id="NRIC" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Mobile" class="control-label col-sm-2 offset-3">Mobile Number: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="Mobile" id="Mobile" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="offset-sm-6 col-sm-4">
+                    <input type="submit" class="btn btn-primary" value="Submit" />
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+
+</body>

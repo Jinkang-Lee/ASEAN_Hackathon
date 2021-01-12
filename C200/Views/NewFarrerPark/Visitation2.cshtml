@@ -1,0 +1,100 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Visitation2.css" />
+</head>
+
+
+<body>
+
+    <!--Navigation Bar-->
+    @await Html.PartialAsync("navbar")
+    <form method="post" action="/NewFarrerPark/Visitation2Post">
+        <section id="banner">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-6 text-center">
+                        <img src="~/images/Loginimage.svg" class="img-fluid" />
+                    </div>
+
+                    <div class="container col-sm-6 bg-light" id="booking1">
+                        <div class="row text-center p-3" id="visitorinfo">
+                            <div class="col-sm-12">
+                                <h2><b> - Patient & Visitor Info - </b></h2>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-4" for="PName" id="lbl">Patient Name: </label>
+                            <div class="col-sm-6">
+                                <input type="text" name="PName" id="PName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-4" for="VName" id="lbl">Visitor Name: </label>
+                            <div class="col-sm-6">
+                                <input type="text" name="VName" id="VName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-4" for="NRIC" id="lbl">NRIC: </label>
+                            <div class="col-sm-6">
+                                <input type="text" name="NRIC" id="NRIC" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-4" for="Mobile" id="lbl">Mobile Number: </label>
+                            <div class="col-sm-6">
+                                <input type="text" name="Mobile" id="Mobile" class="form-control" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="row text-center p-3" id="nextbtn">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Message-->
+                    <div class="offset-sm-3 col-sm-6 ">
+                        @if (ViewData["Message"] != null)
+                        {
+                            <div class="alert alert-warning">
+                                @ViewData["Message"]
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </form>
+
+
+
+
+
+
+
+    @await Html.PartialAsync("CovidMsg")
+
+
+</body>

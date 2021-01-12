@@ -1,0 +1,113 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Visitation2.css" />
+</head>
+
+
+<body>
+
+    <!--Navigation Bar-->
+    @await Html.PartialAsync("navbar")
+    <form method="post" action="/NewFarrerPark/Visitation3Post">
+        <section id="banner">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-5 text-center">
+                        <img src="~/images/Visitation3Image.svg" class="img-fluid" />
+                    </div>
+
+                    <div class="container col-sm-7 bg-light" id="booking">
+                        <div class="row text-center p-3" id="visitorinfo">
+                            <div class="col-sm-12">
+                                <h1><b> - Declaration Form - </b></h1>
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-8" for="Declare" id="lbl">Any close contact with recent travelers who have returned to Singapore in the last 14 days?</label>
+                            <div class="col-sm-3">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="Yes">Yes</label>
+                                    <input type="radio" class="form-check-input" id="Yes" name="Q1" value="Yes" />
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="No">No</label>
+                                    <input type="radio" class="form-check-input" id="No" name="Q1" value="No" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-8" for="Declare" id="lbl">Any close contact with perrson on quarantine, stay-home notice or leave-of-absence within the last 14 days?</label>
+                            <div class="col-sm-3">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="Yes">Yes</label>
+                                    <input type="radio" class="form-check-input" id="Yes" name="Q2" value="Yes" />
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="No">No</label>
+                                    <input type="radio" class="form-check-input" id="No" name="Q2" value="No" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row p-3" id="contents">
+                            <label class="control-label offset-sm-1 col-sm-8" for="Declare" id="lbl">Any close contact with a case of COVID-19 infection?</label>
+                            <div class="col-sm-3">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="Yes">Yes</label>
+                                    <input type="radio" class="form-check-input" id="Yes" name="Q3" value="Yes" />
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="No">No</label>
+                                    <input type="radio" class="form-check-input" id="No" name="Q3" value="No" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row text-center p-3" id="nextbtn">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg">Proceed</button>
+                            </div>
+                        </div>
+
+
+                        <!-- Error Message-->
+                        <div class="offset-sm-3 col-sm-6 ">
+                            @if (ViewData["Message"] != null)
+                            {
+                                <div class="alert alert-warning">
+                                    @ViewData["Message"]
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </section>
+    </form>
+
+
+
+
+    @await Html.PartialAsync("CovidMsg")
+</body>

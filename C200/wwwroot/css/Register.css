@@ -1,0 +1,41 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+#banner {
+    height: 780px !important;
+}
+
+#info-card {
+    height: 620px;
+    border-radius: .5rem !important
+}
+
+#cardbody {
+    margin-top: 0px;
+}
+
+
+#register-container {
+    height: 900px;
+    width: 1200px;
+}
+
+#register-text h1 {
+    font-weight: 900;
+    color: black;
+}
+
+#GotAccount p
+{
+    color: black;
+}
+
+#spacing {
+    height: 200px;
+}

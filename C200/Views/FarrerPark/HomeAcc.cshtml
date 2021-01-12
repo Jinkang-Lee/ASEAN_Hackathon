@@ -1,0 +1,43 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>Farrer Park Hospital</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Home.css" />
+</head>
+
+<body>
+
+    @await Html.PartialAsync("NavBarAcc")
+    <!--Top-Image-->
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-in-image">FARRER PARK HOSPITAL</p>
+                    <p>
+                        We are a Singapore private hospital which helps to provide
+                        clinical care in comfort with a focus on
+                        fairness and value
+                    </p>
+                </div>
+                <div class="offset-sm-1 col-md-5 text-center">
+                    <img src="~/images/top-image.png" class="img-fluid" />
+                </div>
+            </div>
+            <!--<img src="~/images/wave.png" class="btm-image" />-->
+        </div>
+
+
+    </section>
+
+
+
+    <div class="container" id="spacing">
+
+    </div>
+
+    @await Html.PartialAsync("CovidMsg")
+</body>
+

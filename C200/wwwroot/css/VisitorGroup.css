@@ -1,0 +1,28 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+
+#group {
+    margin-top: 30px;
+    color: black;
+    height: 350px;
+    width: 800px;
+    border-radius: .5rem !important;
+}
+
+
+#lbl {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#spacing {
+    height: 200px;
+}
+

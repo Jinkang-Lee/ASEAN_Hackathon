@@ -1,0 +1,120 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+/*Nav Bar*/
+#navbarTop {
+    background: rgb(16,103,230);
+    background: linear-gradient(90deg, rgba(16,103,230,1) 0%, rgba(188,0,255,1) 63%);
+}
+
+.nav-link
+{
+    font-size: 20px;
+}
+
+.navbar-nav li {
+    padding: 0 12px;    
+}
+
+.navbar-nav li a
+{
+    color: #fff !important;
+    font-weight: 600;
+}
+
+
+
+/*Top Image*/
+
+#banner {
+    height: 700px;
+    color: black;
+    padding-top: 5%;
+    background: rgb(16,103,230);
+    background: linear-gradient(90deg, rgba(16,103,230,1) 0%, rgba(188,0,255,1) 63%);
+    box-shadow: 10px 5px 20px black;
+}
+
+.text-in-image
+{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+}
+
+#text-in
+{
+    color: white;
+}
+
+
+.btm-image {
+    width: 100%;
+}
+
+/*Information*/
+#about
+{
+    height: 100px;
+    margin-top: 50px;
+}
+
+#info-container
+{
+    height: 700px;
+}
+
+#card-info
+{
+    height: 400px;
+}
+
+#info-text
+{
+    margin-top: 50px;
+}
+
+/*Covid 19 Messages*/
+#covid-19
+{
+    height: 400px;
+}
+
+.covid
+{
+    height: 100px;
+}
+.title::before
+{
+    content: '';
+    background: #7b1798;
+    height: 5px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transform: translateY(63px);
+}
+
+.covid h2
+{
+    font-weight: 600;
+}
+
+#spacing
+{
+    height: 200px;
+}
+
+#LogSuccess
+{
+    color: white;
+    font-weight: 600;
+}
