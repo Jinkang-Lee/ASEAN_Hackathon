@@ -49,6 +49,7 @@ namespace AWSLambda_RekogTest1
 
             int count = 0;
             int failed = 1000;
+        
 
             //foreach to scan through all he labels
             foreach (var label in detectResponse.Labels)
@@ -58,20 +59,20 @@ namespace AWSLambda_RekogTest1
                     if(label.Name == "Person")
                     {
                         count = label.Instances.Count;
-                        return count;
+                        //return count;
 
                         //Ask help for this part
                         //Patient Database cannot be updated
-                        //string sql = @"UPDATE Patient SET visitorsIN = '{0}' WHERE ward_num = 2 AND bed_num = 7";
-                        //string insert = String.Format(sql, count);
-                        //int count1 = DBUtl.ExecSQL(insert);
-
-                        //if (count1 == 1)
-                        //{
-                        //    return count;
-                        //}
+                        string sql = @"UPDATE Patient SET visitorsIN = '{0}' WHERE ward_num = 2 AND bed_num = 7";
+                        string update = String.Format(sql, count);
+                        int rows = DBUtl.ExecSQL(update);
+                        
+                        if (rows == 1)
+                        {
+                          return count;
+                        }
                     }
-                    
+
                 }
             }
 

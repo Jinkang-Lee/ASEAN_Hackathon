@@ -68,7 +68,11 @@ body {
 
 #info-container
 {
-    height: 700px;
+    height: 600px;
+}
+
+#card-border {
+    box-shadow: 5px 5px 5px black;
 }
 
 #card-info
@@ -79,6 +83,7 @@ body {
 #info-text
 {
     margin-top: 50px;
+    font-weight: 800;
 }
 
 /*Covid 19 Messages*/

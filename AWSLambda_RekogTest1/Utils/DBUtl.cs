@@ -7,7 +7,7 @@ using System.Dynamic;
 using System.IO;
 using System.Reflection;
 
-// This version is for Lesson 4, 5, 6, 7
+
 public static class DBUtl
 {
    public static string DB_CONNECTION;
