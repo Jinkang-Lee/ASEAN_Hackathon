@@ -47,10 +47,11 @@ namespace AWSLambda_RekogTest1
                     }
                 }) ;
 
+
+
             int count = 0;
             int failed = 1000;
         
-
             //foreach to scan through all he labels
             foreach (var label in detectResponse.Labels)
             {
@@ -66,19 +67,15 @@ namespace AWSLambda_RekogTest1
                         string sql = @"UPDATE Patient SET visitorsIN = '{0}' WHERE ward_num = 2 AND bed_num = 7";
                         string update = String.Format(sql, count);
                         int rows = DBUtl.ExecSQL(update);
-                        
+
                         if (rows == 1)
                         {
                           return count;
                         }
                     }
-
                 }
             }
-
             return failed;
-
-            
         }
     }
 }
