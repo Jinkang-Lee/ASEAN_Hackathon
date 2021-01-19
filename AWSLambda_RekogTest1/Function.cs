@@ -70,7 +70,7 @@ namespace AWSLambda_RekogTest1
 
                         if (rows == 1)
                         {
-                          return count;
+                            return count;
                         }
                     }
                 }
@@ -79,3 +79,5 @@ namespace AWSLambda_RekogTest1
         }
     }
 }
+
+

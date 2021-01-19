@@ -251,7 +251,7 @@ namespace C200.Controllers
 
             DateTime Time_Now = DateTime.Now;
 
-            //!!!!!!!!!!HAVE TO FIGURE THIS OUT!!!!!!!!!!!!!!!!
+            
             string sql = @"UPDATE visitation SET visitation.time_in = '{0}' WHERE visitation.pin_number = '{1}'";
             string update = String.Format(sql, Time_Now, Pin_Num);
 
