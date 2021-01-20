@@ -54,7 +54,7 @@ namespace C200.Controllers
 
 
             //CHECK IF BED AND WARD EXIST
-            String fullsql = String.Format("SELECT * FROM Patient WHERE ward_num = '{0}' AND bed_num = '{1}'", patientWard, patientBed);
+            String fullsql = String.Format("SELECT * FROM Patient WHERE ward = '{0}' AND bed = '{1}'", patientWard, patientBed);
             DataTable ds = DBUtl.GetTable(fullsql);
              if (ds.Rows.Count == 1)
              {
@@ -107,7 +107,7 @@ namespace C200.Controllers
             }
 
             //CHECK IF PATIENT EXIST
-            String fullsql = String.Format("SELECT * FROM Patient WHERE full_name = '{0}'", patientName);
+            String fullsql = String.Format("SELECT * FROM Patient WHERE name = '{0}'", patientName);
             DataTable ds = DBUtl.GetTable(fullsql);
             if (ds.Rows.Count != 1)
             {
@@ -122,25 +122,36 @@ namespace C200.Controllers
             int pin_num = rand1.Next(000001, 999999);
 
             //INSERT visitor into visitor database
-            string sql = @"INSERT INTO Visitor(NRIC, full_name, phone, pin_num) VALUES('{0}', '{1}', '{2}', '{3}')";
-            string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile, pin_num);
+            string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
+            string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
             int count = DBUtl.ExecSQL(insert);
 
-            //INSERT visit id and pin number from Visitor table to visitation table
-            string sql2 = @"INSERT INTO visitation(visit_id, pin_number) 
-                            SELECT visit_id, pin_num FROM Visitor WHERE full_name= '{0}'";
-            string insert2 = String.Format(sql2, VisitorName);
-            int count2 = DBUtl.ExecSQL(insert2);
 
+
+
+            //INSERT visitor_id into Visitation table
+            string sql2 = @"INSERT INTO Visitation(visitor_id) 
+                                SELECT visitor_id FROM Visitor WHERE name = '{0}'";
+
+            string insert1 = string.Format(sql2, VisitorName);
+            int count2 = DBUtl.ExecSQL(insert1);
 
             //UPDATE visitation table with patient_id taken from Patient table
-            string sql3 = @"UPDATE visitation SET visitation.patient_id = Patient.patient_id FROM Patient WHERE full_name = '{0}'";
+            string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
 
             string update = string.Format(sql3, patientName);
             int count3 = DBUtl.ExecSQL(update);
 
 
-            if (count == 1 && count2 == 1 && count3 == 1)
+            //UPDATE Visitation table with pin number
+            string sql4 = @"UPDATE Visitation SET pin_number = {0}";
+            string update2 = string.Format(sql4, pin_num);
+            int count4 = DBUtl.ExecSQL(update2);
+
+
+
+
+            if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
             {
 
                 return View("Visitation3");
@@ -238,7 +249,7 @@ namespace C200.Controllers
             
 
             //CHECK IF Pin Number is valid
-            String checkpinsql = String.Format("SELECT * FROM visitation WHERE pin_number = '{0}'", Pin_Num);
+            String checkpinsql = String.Format("SELECT * FROM Visitation WHERE pin_number = '{0}'", Pin_Num);
             DataTable ds = DBUtl.GetTable(checkpinsql);
             if (ds.Rows.Count != 1)
             {
@@ -252,7 +263,7 @@ namespace C200.Controllers
             DateTime Time_Now = DateTime.Now;
 
             
-            string sql = @"UPDATE visitation SET visitation.time_in = '{0}' WHERE visitation.pin_number = '{1}'";
+            string sql = @"UPDATE Visitation SET Visitation.time_in = '{0}' WHERE Visitation.pin_number = '{1}'";
             string update = String.Format(sql, Time_Now, Pin_Num);
 
             int count = DBUtl.ExecSQL(update);
@@ -301,7 +312,7 @@ namespace C200.Controllers
 
 
             //CHECK IF Pin Number is valid
-            String checkpinsql = String.Format("SELECT * FROM visitation WHERE pin_number = '{0}'", Pin_Num);
+            String checkpinsql = String.Format("SELECT * FROM Visitation WHERE pin_number = '{0}'", Pin_Num);
             DataTable ds = DBUtl.GetTable(checkpinsql);
             if (ds.Rows.Count != 1)
             {
@@ -312,8 +323,8 @@ namespace C200.Controllers
 
             DateTime Time_Now = DateTime.Now;
 
-            //!!!!!!!!!!HAVE TO FIGURE THIS OUT!!!!!!!!!!!!!!!!
-            string sql = @"UPDATE visitation SET visitation.time_out = '{0}' WHERE visitation.pin_number = '{1}'";
+
+            string sql = @"UPDATE Visitation SET Visitation.time_out = '{0}' WHERE Visitation.pin_number = '{1}'";
             string update = String.Format(sql, Time_Now, Pin_Num);
 
             int count = DBUtl.ExecSQL(update);
