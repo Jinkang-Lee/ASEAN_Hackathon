@@ -117,46 +117,356 @@ namespace C200.Controllers
             }
 
 
+
+            //Check for format of NRIC entered
+            if ((VisitorNRIC.Substring(0, 1).ToLower().Equals("t")
+                || VisitorNRIC.Substring(0, 1).ToLower().Equals("s")
+                || VisitorNRIC.Substring(0, 1).ToLower().Equals("g")
+                || VisitorNRIC.Substring(0, 1).ToLower().Equals("f"))
+                && (VisitorNRIC.Substring(8, 1).IsInteger() == false)
+                && ((VisitorNRIC.Substring(1, 7).IsInteger() == true) && (VisitorNRIC.Substring(1, 7).Length == 7))
+                && (VisitorNRIC.Length == 9))
+
+            {
+                //Check validity of NRIC using CheckSum exact accurate method instead of string patterns
+                int sum = 0;
+                int remainder = 0;
+                string firstCharNRIC = "";
+                string lastCharNRIC = "";
+                string expectedLastCharNRIC = "";
+
+                firstCharNRIC = VisitorNRIC.Substring(0, 1).ToLower();
+                lastCharNRIC = VisitorNRIC.Substring(8, 1).ToLower();
+
+                //Weight of NRIC characters (from first to last) = 2 7 6 5 4 3 2
+                sum = (Int32.Parse(VisitorNRIC.Substring(1, 1)) * 2)
+                    + (Int32.Parse(VisitorNRIC.Substring(2, 1)) * 7)
+                    + (Int32.Parse(VisitorNRIC.Substring(3, 1)) * 6)
+                    + (Int32.Parse(VisitorNRIC.Substring(4, 1)) * 5)
+                    + (Int32.Parse(VisitorNRIC.Substring(5, 1)) * 4)
+                    + (Int32.Parse(VisitorNRIC.Substring(6, 1)) * 3)
+                    + (Int32.Parse(VisitorNRIC.Substring(7, 1)) * 2);
+
+                //S or T: 0=J, 1=Z, 2=I, 3=H, 4=G, 5=F, 6=E, 7=D, 8=C, 9=B, 10=A
+                //F or G: 0 = X, 1 = W, 2 = U, 3 = T, 4 = R, 5 = Q, 6 = P, 7 = N, 8 = M, 9 = L, 10 = K
+
+                if (firstCharNRIC.Equals("t") || firstCharNRIC.Equals("g"))
+                {
+                    sum = sum + 4;
+                }
+
+                remainder = sum % 11;
+
+                if (firstCharNRIC.Equals("s") || firstCharNRIC.Equals("t"))
+                {
+                    if (remainder == 0)
+                    {
+                        expectedLastCharNRIC = "J";
+                    }
+                    else if (remainder == 1)
+                    {
+                        expectedLastCharNRIC = "Z";
+                    }
+                    else if (remainder == 2)
+                    {
+                        expectedLastCharNRIC = "I";
+                    }
+                    else if (remainder == 3)
+                    {
+                        expectedLastCharNRIC = "H";
+                    }
+                    else if (remainder == 4)
+                    {
+                        expectedLastCharNRIC = "G";
+                    }
+                    else if (remainder == 5)
+                    {
+                        expectedLastCharNRIC = "F";
+                    }
+                    else if (remainder == 6)
+                    {
+                        expectedLastCharNRIC = "E";
+                    }
+                    else if (remainder == 7)
+                    {
+                        expectedLastCharNRIC = "D";
+                    }
+                    else if (remainder == 8)
+                    {
+                        expectedLastCharNRIC = "C";
+                    }
+                    else if (remainder == 9)
+                    {
+                        expectedLastCharNRIC = "B";
+                    }
+                    else if (remainder == 10)
+                    {
+                        expectedLastCharNRIC = "A";
+                    }
+                }
+
+                if (firstCharNRIC.Equals("f") || firstCharNRIC.Equals("g"))
+                {
+                    if (remainder == 0)
+                    {
+                        expectedLastCharNRIC = "X";
+                    }
+                    else if (remainder == 1)
+                    {
+                        expectedLastCharNRIC = "W";
+                    }
+                    else if (remainder == 2)
+                    {
+                        expectedLastCharNRIC = "U";
+                    }
+                    else if (remainder == 3)
+                    {
+                        expectedLastCharNRIC = "T";
+                    }
+                    else if (remainder == 4)
+                    {
+                        expectedLastCharNRIC = "R";
+                    }
+                    else if (remainder == 5)
+                    {
+                        expectedLastCharNRIC = "Q";
+                    }
+                    else if (remainder == 6)
+                    {
+                        expectedLastCharNRIC = "P";
+                    }
+                    else if (remainder == 7)
+                    {
+                        expectedLastCharNRIC = "N";
+                    }
+                    else if (remainder == 8)
+                    {
+                        expectedLastCharNRIC = "M";
+                    }
+                    else if (remainder == 9)
+                    {
+                        expectedLastCharNRIC = "L";
+                    }
+                    else if (remainder == 10)
+                    {
+                        expectedLastCharNRIC = "K";
+                    }
+                }
+
+                if (expectedLastCharNRIC.ToLower() != lastCharNRIC || expectedLastCharNRIC == "")
+                {
+                    ViewData["Message"] = "NRTIC entered is not valid, using wrong Start/End character or number keyed in is wrong";
+                    ViewData["MsgType"] = "warning";
+                    return View("Visitation2");
+                }
+            }
+            else
+            {
+                ViewData["Message"] = "NRIC entered does not follow the NRIC format and is wrong";
+                ViewData["MsgType"] = "warning";
+                return View("Visitation2");
+            }
+
+
+
+
+
             //Random 6 digit pin number
             Random rand1 = new Random();
             int pin_num = rand1.Next(000001, 999999);
 
+
+
+
+
+
+
+
+            ////CHECK IF VISITOR ALREADY EXIST IN DATABASE
+            //String checksql = String.Format("SELECT nric FROM Visitor WHERE nric = '{0}'", VisitorNRIC);
+            //DataTable check = DBUtl.GetTable(checksql);
+            //if(check.Rows.Count ==1)
+            //{
+            //    //IF VISITOR EXIST IN DATABASE
+            //    //INSERT visitor_id into Visitation table
+            //    string sql2 = @"INSERT INTO Visitation(visitor_id) 
+            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
+
+            //    string insert1 = string.Format(sql2, VisitorName);
+            //    int count2 = DBUtl.ExecSQL(insert1);
+
+            //    //UPDATE visitation table with patient_id taken from Patient table
+            //    string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
+
+            //    string update = string.Format(sql3, patientName);
+            //    int count3 = DBUtl.ExecSQL(update);
+
+
+            //    //UPDATE Visitation table with pin number
+            //    string sql4 = @"UPDATE Visitation SET pin_number = {0}";
+            //    string update2 = string.Format(sql4, pin_num);
+            //    int count4 = DBUtl.ExecSQL(update2);
+
+            //    if (count2 == 1 && count3 == 1 && count4 == 1)
+            //    {
+
+            //        return View("Visitation3");
+            //    }
+
+
+            //    else
+            //    {
+            //        ViewData["Message"] = DBUtl.DB_Message;
+            //        ViewData["MsgType"] = "danger";
+            //        return View("Visitation2");
+            //    }
+            //}
+
+
+
+            //else
+            //{
+            //    //IF VISITOR DOES NOT EXIST IN DATABASE
+
+            //    //INSERT visitor into visitor database
+            //    string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
+            //    string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
+            //    int count = DBUtl.ExecSQL(insert);
+
+            //    //INSERT visitor_id into Visitation table
+            //    string sql2 = @"INSERT INTO Visitation(visitor_id) 
+            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
+
+            //    string insert1 = string.Format(sql2, VisitorName);
+            //    int count2 = DBUtl.ExecSQL(insert1);
+
+            //    //UPDATE visitation table with patient_id taken from Patient table
+            //    string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
+
+            //    string update = string.Format(sql3, patientName);
+            //    int count3 = DBUtl.ExecSQL(update);
+
+
+            //    //UPDATE Visitation table with pin number
+            //    string sql4 = @"UPDATE Visitation SET pin_number = {0}";
+            //    string update2 = string.Format(sql4, pin_num);
+            //    int count4 = DBUtl.ExecSQL(update2);
+
+            //    if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
+            //    {
+
+            //        return View("Visitation3");
+            //    }
+
+
+            //    else
+            //    {
+            //        ViewData["Message"] = DBUtl.DB_Message;
+            //        ViewData["MsgType"] = "danger";
+            //        return View("Visitation2");
+            //    }
+            //}
+
+
+
+
             //INSERT visitor into visitor database
-            string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
-            string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
-            int count = DBUtl.ExecSQL(insert);
+            //string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
+            //string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
+            //int count = DBUtl.ExecSQL(insert);
 
 
 
 
-            //INSERT visitor_id into Visitation table
-            string sql2 = @"INSERT INTO Visitation(visitor_id) 
-                                SELECT visitor_id FROM Visitor WHERE name = '{0}'";
+            ////INSERT visitor_id into Visitation table
+            //string sql2 = @"INSERT INTO Visitation(visitor_id) 
+            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
 
-            string insert1 = string.Format(sql2, VisitorName);
-            int count2 = DBUtl.ExecSQL(insert1);
+            //string insert1 = string.Format(sql2, VisitorName);
+            //int count2 = DBUtl.ExecSQL(insert1);
 
-            //UPDATE visitation table with patient_id taken from Patient table
-            string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
 
-            string update = string.Format(sql3, patientName);
-            int count3 = DBUtl.ExecSQL(update);
+            ////UPDATE visitation table with patient_id taken from Patient table
+            //string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
 
+            //string update = string.Format(sql3, patientName);
+            //int count3 = DBUtl.ExecSQL(update);
+
+            //string sqltest1 = @"SELECT Patient.patient_id FROM Patient WHERE name = '{0}'";
+            //string test1 = string.Format(sqltest1, patientName);
+
+            //string sqltest2 = @"SELECT Visitor.visitor_id FROM Visitor WHERE name = '{0}'";
+            //string test2 = string.Format(sqltest2, VisitorName);
 
             //UPDATE Visitation table with pin number
-            string sql4 = @"UPDATE Visitation SET pin_number = {0}";
-            string update2 = string.Format(sql4, pin_num);
-            int count4 = DBUtl.ExecSQL(update2);
+            //string sql4 = @"UPDATE Visitation SET pin_number = '{0}' WHERE patient_id = '{1}' AND visitor_id = '{2}'";
+
+            //string update2 = string.Format(sql4, pin_num, test1, test2);
+            //int count4 = DBUtl.ExecSQL(update2);
 
 
 
 
-            if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
+            //if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
+            //{
+
+            //    return View("Visitation3");
+            //}
+
+
+            //else
+            //{
+            //    ViewData["Message"] = DBUtl.DB_Message;
+            //    ViewData["MsgType"] = "danger";
+            //    return View("Visitation2");
+            //}
+
+
+
+
+            string selectVisitorIC = @"SELECT nric FROM Visitor WHERE Visitor.nric = '{0}' ";
+            string fullSelectVisitorIC = string.Format(selectVisitorIC, VisitorNRIC);
+            DataTable DSVisitorNRIC = DBUtl.GetTable(fullSelectVisitorIC);
+
+            if (DSVisitorNRIC.Rows.Count != 1)
             {
-
-                return View("Visitation3");
+                //INSERT visitor into visitor database
+                string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
+                string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
+                int count = DBUtl.ExecSQL(insert);
             }
 
+            //Retrive VisitorID 
+
+            string selectVisitorIDSQL = @"SELECT visitor_id FROM Visitor WHERE Visitor.name = '{0}'";
+            string fullSelectVisitorIDSQL = string.Format(selectVisitorIDSQL, VisitorName);
+
+            DataTable DSVisitorID = DBUtl.GetTable(fullSelectVisitorIDSQL);
+            string retrivedVisitorID = DSVisitorID.Rows[0][0].ToString();
+
+            //Retrive PatientID 
+            string selectPatientIDSQL = @"SELECT patient_id FROM Patient WHERE Patient.name = '{0}'";
+            string fullSelectPatientIDSQL = string.Format(selectPatientIDSQL, patientName);
+
+            DataTable DSPatientID = DBUtl.GetTable(fullSelectPatientIDSQL);
+            string retrivedPatientID = DSPatientID.Rows[0][0].ToString();
+
+            //Retrive RuleID
+            string fullSelectRuleIDSQL = @"SELECT rule_id FROM Rules ORDER BY rule_id DESC";
+
+            DataTable DSRuleID = DBUtl.GetTable(fullSelectRuleIDSQL);
+            string retrivedRuleID = DSRuleID.Rows[0][0].ToString();
+
+
+            //Insert Visitation Records into the Visitation Table of the Database
+            string insertVisitationSQL = @"INSERT INTO Visitation(patient_id, visitor_id, rule_id, pin_number) VALUES({0} , {1} , {2} , '{3}')";
+            string fullInsertVisitationSQL = string.Format(insertVisitationSQL, retrivedPatientID, retrivedVisitorID, retrivedRuleID, pin_num);
+
+            int rowsAffected = DBUtl.ExecSQL(fullInsertVisitationSQL);
+            if (rowsAffected == 1)
+            {
+                return View("Visitation3");
+            }
 
             else
             {

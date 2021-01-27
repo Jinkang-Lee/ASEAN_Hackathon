@@ -1,0 +1,63 @@
+﻿5<!DOCTYPE html>
+<head>
+    
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>FarrerPark Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Home.css" />
+
+</head>
+
+<body>
+
+    <div class="container" id="test">
+
+        <!--Jin Kang-->
+        <form method="post" action="/FarrerParkAdmin/ViewVisitationLiveCount">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-dark" value="View Live Visitor Count" />
+                </div>
+            </div>
+        </form>
+
+        <!--Qiao Ling-->
+        <form method="post" action="/FarrerParkAdmin/ViewVistationAlert">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-dark" value="View Alert Messages" />
+                </div>
+            </div>
+        </form>
+
+        <!--Ming Hao-->
+        <form method="post" action="/FarrerParkAdmin/ModifyVisitationRules">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-dark" value="Modify Visitation Rules" />
+                </div>
+            </div>
+        </form>
+
+        <!--Ming Hao-->
+        <form method="post" action="/FarrerParkAdmin/SearchVisitationReport">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-dark" value="Search Entry Logs" />
+                </div>
+            </div>
+        </form>
+
+        <!--Sameer-->
+        <form method="post" action="/FarrerParkAdmin/SendNotification">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-dark" value="Send Notifications to Visitors" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</body>

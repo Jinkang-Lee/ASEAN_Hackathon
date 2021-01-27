@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<head>
+
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title>FarrerPark Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <form method="post" action="/FarrerParkAdmin/ModifyVisitationRulesPost">
+        <div class="container m">
+            <div class="form-group row">
+                <label for="MaxVisitorEachDay" class="control-label col-sm-2">Max No. of Visitor Each Day (Per Patient)</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="MaxVisitorEachDay" name="MaxVisitorEachDay" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="MaxVisitorEachTime">Max No. of Visitor Visiting Each Time (Visitors/Normal Ward) </label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="MaxVisitorEachTime" name="MaxVisitorEachTime">
+                        <option value="null">>Select Option<</option>
+                        <option value="1">1 Visitor</option>
+                        <option value="2">2 Visitor</option>
+                        <option value="3">3 Visitor</option>
+                        <option value="4">4 Visitor</option>
+                        <option value="5">5 Visitor</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="MaxVisitorEachTimeICU">Max No. of Visitor Visiting Each Time (Visitors/ICU Ward) </label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="MaxVisitorEachTimeICU" name="MaxVisitorEachTimeICU">
+                        <option value="null">>Select Option<</option>
+                        <option value="1">1 Visitor</option>
+                        <option value="2">2 Visitor</option>
+                        <option value="3">3 Visitor</option>
+                        <option value="4">4 Visitor</option>
+                        <option value="5">5 Visitor</option>
+                    </select>
+                </div>
+            </div>
+            <!--
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="VisitationHourStartAfternoon">Visiting Hours Start Time (Afternoon Shift)</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="VisitationHourStartAfternoon" name="VisitationHourStartAfternoon">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">10</option>
+                    <option value="12">10</option>
+                </select>
+            </div>
+
+            <label class="control-label col-sm-2" for="VisitationHourEndAfternoon">Visiting Hours End Time (Afternoon Shift) </label>
+            <div class="col-sm-4">
+                <select class="form-control" id="VisitationHourEndAfternoon" name="VisitationHourEndAfternoon">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="VisitationHourStartEvening">Visiting Hours Start Time (Evening Shift)</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="VisitationHourStartEvening" name="VisitationHourStartEvening">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">10</option>
+                    <option value="12">10</option>
+                </select>
+            </div>
+
+            <label class="control-label col-sm-2" for="VisitationHourEndEvening">Visiting Hours End Time (Evening Shift) </label>
+            <div class="col-sm-4">
+                <select class="form-control" id="VisitationHourEndEvening" name="VisitationHourEndEvening">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+        </div>
+
+        -->
+            <div class="form-group">
+                <label>Afternnon Operation Hours</label>
+            </div>
+
+            <div class="form-group row offset-sm-2">
+                <div>
+                    <small>Start Time</small>
+                    <input type="time" id="VisitationAfternoonStartTime" name="VisitationAfternoonStartTime"
+                           min="00:00" max="23:59" required>
+                </div>
+
+                <div>
+                    <small>End Time</small>
+                    <input type="time" id="VisitationAfternoonEndTime" name="VisitationAfternoonEndTime"
+                           min="00:00" max="23:59" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Evening Operation Hours</label>
+            </div>
+
+            <div class="form-group row offset-sm-2">
+                <div>
+                    <small>Start Time</small>
+                    <input type="time" id="VisitationEveningStartTime" name="VisitationEveningStartTime"
+                           min="00:00" max="23:59" required>
+                </div>
+
+                <div>
+                    <small>End Time</small>
+                    <input type="time" id="VisitationEveningEndTime" name="VisitationEveningEndTime"
+                           min="00:00" max="23:59" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="control-label col-sm-2" for="HealthDeclarationChecks">Health Declaration Upon Registration Needed?</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="HealthDeclarationChecks" name="HealthDeclarationChecks">
+                        <option value="null">>Select Option<</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="AgeRequirement">Minimum age required to visit patient</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="AgeRequirement" name="AgeRequirement">
+                        <option value="null">>Select Option<</option>
+                        <option value="10">10 Years Old</option>
+                        <option value="11">11 Years Old</option>
+                        <option value="12">12 Years Old</option>
+                        <option value="13">13 Years Old</option>
+                        <option value="14">14 Years Old</option>
+                        <option value="15">15 Years Old</option>
+                        <option value="16">16 Years Old</option>
+                        <option value="17">17 Years Old</option>
+                        <option value="18">18 Years Old</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4 ">
+                    <input type="submit" class="btn btn-success" value="Confirm" />
+                </div>
+            </div>
+            
+
+                    @if (ViewData["Message"] != null)
+                    {
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-6">
+                    <div class="alert alert-@ViewData["MsgType"]">
+                        @Html.Raw(ViewData["Message"])
+                    </div>
+                </div>
+            </div>
+            }
+
+                </div>
+    </form>
+</body>
