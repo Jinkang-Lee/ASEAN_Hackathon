@@ -37,40 +37,40 @@ namespace C200.Controllers
         {
 
             IFormCollection form = HttpContext.Request.Form;
-            
-             string patientWard = form["WardNumber"].ToString().Trim();
-             string patientBed = form["BedNumber"].ToString().Trim();
-            
+
+            string patientWard = form["WardNumber"].ToString().Trim();
+            string patientBed = form["BedNumber"].ToString().Trim();
+
 
             //Checks if all fields are filled in
             if (ValidUtl.CheckIfEmpty(patientWard, patientBed) == true)
-             {
-                 ViewData["Message"] = "All fields must be filled in";
-                 ViewData["MsgType"] = "warning";
+            {
+                ViewData["Message"] = "All fields must be filled in";
+                ViewData["MsgType"] = "warning";
 
-                 return View("Visitation1");
-             }
+                return View("Visitation1");
+            }
 
 
 
             //CHECK IF BED AND WARD EXIST
             String fullsql = String.Format("SELECT * FROM Patient WHERE ward = '{0}' AND bed = '{1}'", patientWard, patientBed);
             DataTable ds = DBUtl.GetTable(fullsql);
-             if (ds.Rows.Count == 1)
-             {
+            if (ds.Rows.Count == 1)
+            {
                 return View("Visitation2");
-             }
-             else
-             {
-                 ViewData["Message"] = "Invalid Bed or Ward!";
-                 ViewData["MsgType"] = "danger";
-                 return View("Visitation1");
-             }
+            }
+            else
+            {
+                ViewData["Message"] = "Invalid Bed or Ward!";
+                ViewData["MsgType"] = "danger";
+                return View("Visitation1");
+            }
 
-            
+
         }
 
-        
+
 
         public IActionResult Visitation2()
         {
@@ -115,8 +115,6 @@ namespace C200.Controllers
                 ViewData["MsgType"] = "danger";
                 return View("Visitation2");
             }
-
-
 
             //Check for format of NRIC entered
             if ((VisitorNRIC.Substring(0, 1).ToLower().Equals("t")
@@ -267,162 +265,23 @@ namespace C200.Controllers
                 return View("Visitation2");
             }
 
-
-
-
-
             //Random 6 digit pin number
             Random rand1 = new Random();
             int pin_num = rand1.Next(000001, 999999);
 
 
+            //TESTING CODES DON'T REMOVE FOR THE TIME BEING - MIGN HAO THANK YOU
+            /*
+            string selectAllPinNum = @"SELECT pin_number FROM Visitation";
+            DataTable DSAllPinNum = DBUtl.GetTable(selectAllPinNum);
+            int numRowsPin = DSAllPinNum.Rows.Count;
 
-
-
-
-
-
-            ////CHECK IF VISITOR ALREADY EXIST IN DATABASE
-            //String checksql = String.Format("SELECT nric FROM Visitor WHERE nric = '{0}'", VisitorNRIC);
-            //DataTable check = DBUtl.GetTable(checksql);
-            //if(check.Rows.Count ==1)
-            //{
-            //    //IF VISITOR EXIST IN DATABASE
-            //    //INSERT visitor_id into Visitation table
-            //    string sql2 = @"INSERT INTO Visitation(visitor_id) 
-            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
-
-            //    string insert1 = string.Format(sql2, VisitorName);
-            //    int count2 = DBUtl.ExecSQL(insert1);
-
-            //    //UPDATE visitation table with patient_id taken from Patient table
-            //    string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
-
-            //    string update = string.Format(sql3, patientName);
-            //    int count3 = DBUtl.ExecSQL(update);
-
-
-            //    //UPDATE Visitation table with pin number
-            //    string sql4 = @"UPDATE Visitation SET pin_number = {0}";
-            //    string update2 = string.Format(sql4, pin_num);
-            //    int count4 = DBUtl.ExecSQL(update2);
-
-            //    if (count2 == 1 && count3 == 1 && count4 == 1)
-            //    {
-
-            //        return View("Visitation3");
-            //    }
-
-
-            //    else
-            //    {
-            //        ViewData["Message"] = DBUtl.DB_Message;
-            //        ViewData["MsgType"] = "danger";
-            //        return View("Visitation2");
-            //    }
-            //}
-
-
-
-            //else
-            //{
-            //    //IF VISITOR DOES NOT EXIST IN DATABASE
-
-            //    //INSERT visitor into visitor database
-            //    string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
-            //    string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
-            //    int count = DBUtl.ExecSQL(insert);
-
-            //    //INSERT visitor_id into Visitation table
-            //    string sql2 = @"INSERT INTO Visitation(visitor_id) 
-            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
-
-            //    string insert1 = string.Format(sql2, VisitorName);
-            //    int count2 = DBUtl.ExecSQL(insert1);
-
-            //    //UPDATE visitation table with patient_id taken from Patient table
-            //    string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
-
-            //    string update = string.Format(sql3, patientName);
-            //    int count3 = DBUtl.ExecSQL(update);
-
-
-            //    //UPDATE Visitation table with pin number
-            //    string sql4 = @"UPDATE Visitation SET pin_number = {0}";
-            //    string update2 = string.Format(sql4, pin_num);
-            //    int count4 = DBUtl.ExecSQL(update2);
-
-            //    if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
-            //    {
-
-            //        return View("Visitation3");
-            //    }
-
-
-            //    else
-            //    {
-            //        ViewData["Message"] = DBUtl.DB_Message;
-            //        ViewData["MsgType"] = "danger";
-            //        return View("Visitation2");
-            //    }
-            //}
-
-
-
-
-            //INSERT visitor into visitor database
-            //string sql = @"INSERT INTO Visitor(nric, name, phone) VALUES('{0}', '{1}', '{2}')";
-            //string insert = String.Format(sql, VisitorNRIC, VisitorName, VisitorMobile);
-            //int count = DBUtl.ExecSQL(insert);
-
-
-
-
-            ////INSERT visitor_id into Visitation table
-            //string sql2 = @"INSERT INTO Visitation(visitor_id) 
-            //                    SELECT visitor_id FROM Visitor WHERE name = '{0}'";
-
-            //string insert1 = string.Format(sql2, VisitorName);
-            //int count2 = DBUtl.ExecSQL(insert1);
-
-
-            ////UPDATE visitation table with patient_id taken from Patient table
-            //string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
-
-            //string update = string.Format(sql3, patientName);
-            //int count3 = DBUtl.ExecSQL(update);
-
-            //string sqltest1 = @"SELECT Patient.patient_id FROM Patient WHERE name = '{0}'";
-            //string test1 = string.Format(sqltest1, patientName);
-
-            //string sqltest2 = @"SELECT Visitor.visitor_id FROM Visitor WHERE name = '{0}'";
-            //string test2 = string.Format(sqltest2, VisitorName);
-
-            //UPDATE Visitation table with pin number
-            //string sql4 = @"UPDATE Visitation SET pin_number = '{0}' WHERE patient_id = '{1}' AND visitor_id = '{2}'";
-
-            //string update2 = string.Format(sql4, pin_num, test1, test2);
-            //int count4 = DBUtl.ExecSQL(update2);
-
-
-
-
-            //if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
-            //{
-
-            //    return View("Visitation3");
-            //}
-
-
-            //else
-            //{
-            //    ViewData["Message"] = DBUtl.DB_Message;
-            //    ViewData["MsgType"] = "danger";
-            //    return View("Visitation2");
-            //}
-
-
-
+            for(int i = 0; i < numRowsPin; i++)
+            {
+                int tempInt = Int32.Parse(DSAllPinNum.Rows[0][i]);
+                if(pin_num == DSAllPinNum.Rows[0][i])
+            }
+            */
 
             string selectVisitorIC = @"SELECT nric FROM Visitor WHERE Visitor.nric = '{0}' ";
             string fullSelectVisitorIC = string.Format(selectVisitorIC, VisitorNRIC);
@@ -474,11 +333,52 @@ namespace C200.Controllers
                 ViewData["MsgType"] = "danger";
                 return View("Visitation2");
             }
+
+
+
+            /*
+            //INSERT visitor_id into Visitation table
+            string sql2 = @"INSERT INTO Visitation(visitor_id) 
+                                SELECT visitor_id FROM Visitor WHERE name = '{0}'";
+
+            string insert1 = string.Format(sql2, VisitorName);
+            int count2 = DBUtl.ExecSQL(insert1);
+
+            //UPDATE visitation table with patient_id taken from Patient table
+            string sql3 = @"UPDATE Visitation SET Visitation.patient_id = Patient.patient_id FROM Patient WHERE name = '{0}'";
+
+            string update = string.Format(sql3, patientName);
+            int count3 = DBUtl.ExecSQL(update);
+
+
+            //UPDATE Visitation table with pin number
+            string sql4 = @"UPDATE Visitation SET pin_number = {0}";
+            string update2 = string.Format(sql4, pin_num);
+            int count4 = DBUtl.ExecSQL(update2);
+            */
+
+
+
+            /*
+            if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1)
+            {
+
+                return View("Visitation3");
+            }
+
+
+            else
+            {
+                ViewData["Message"] = DBUtl.DB_Message;
+                ViewData["MsgType"] = "danger";
+                return View("Visitation2");
+            }
+            */
         }
 
-            
-        
-        
+
+
+
         public IActionResult EndingPage()
         {
             return View("EndingPage");
@@ -493,7 +393,7 @@ namespace C200.Controllers
 
         //DECLARATION FORM
         public IActionResult Visitation3Post()
-        {       
+        {
 
             IFormCollection form = HttpContext.Request.Form;
             string Q1 = form["Q1"].ToString().Trim();
@@ -509,7 +409,7 @@ namespace C200.Controllers
                 return View("Visitation3");
             }
 
-            if(Q1 == "Yes" || Q2 == "Yes" || Q3 == "Yes")
+            if (Q1 == "Yes" || Q2 == "Yes" || Q3 == "Yes")
             {
                 ViewData["Message"] = "You are no allowed to proceed as you selected 'Yes' for one of the field";
                 ViewData["MsgType"] = "warning";
@@ -520,9 +420,9 @@ namespace C200.Controllers
             return View("EndingPage");
         }
 
-       
 
-   
+
+
 
 
 
@@ -548,7 +448,7 @@ namespace C200.Controllers
                 return View("GantryEnter");
             }
 
-            if(Pin_Num.Length != 6)
+            if (Pin_Num.Length != 6)
             {
                 ViewData["Message"] = "Length of Pin Number should be 6";
                 ViewData["MsgType"] = "warning";
@@ -556,7 +456,7 @@ namespace C200.Controllers
                 return View("GantryEnter");
             }
 
-            
+
 
             //CHECK IF Pin Number is valid
             String checkpinsql = String.Format("SELECT * FROM Visitation WHERE pin_number = '{0}'", Pin_Num);
@@ -570,9 +470,48 @@ namespace C200.Controllers
 
 
 
+            //ENFORCE MAX PEOPLE PER DAY HOSPITAL RULE
+
+            //Retriving and setting the patientID, and ruleID fields
+            string retrivedPatientID = ds.Rows[0][1].ToString();
+            string retrivedRuleID = ds.Rows[0][3].ToString();
+
+            //Retriving RULE RECORD based on RuleID retirved previously
+            string retriveRuleRecord = @"SELECT * FROM Rules WHERE rule_id = {0}";
+            string fullRetriveRuleRecord = string.Format(retriveRuleRecord, retrivedRuleID);
+
+            DataTable DSRuleRecord = DBUtl.GetTable(fullRetriveRuleRecord);
+            string retrivedMaxPeopleRuleValue = DSRuleRecord.Rows[0][1].ToString();
+            int maxPeopleRuleValueInteger = Int32.Parse(retrivedMaxPeopleRuleValue);
+
+            //Retriving visitation entiries of today's date
+            /*
+            string retriveVisitationEntries = @"SELECT * FROM  Visitation
+                                               WHERE DAY(time_in) =  DAY(GETDATE())
+                                               AND MONTH(time_out) = MONTH(GETDATE())
+                                               AND YEAR(time_out) = Year(GETDATE())
+                                               AND patient_id = {0}";
+            */
+
+            string retriveVisitationEntries = @"SELECT * 
+                                              FROM Visitation
+                                              WHERE CONVERT(DATE,time_in)=CONVERT(Date,GETDATE()) 
+                                              AND patient_id = {0} ";
+
+
+            string fullRetriveVisitationEntries = string.Format(retriveVisitationEntries, retrivedPatientID);
+
+            if (DBUtl.GetTable(fullRetriveVisitationEntries).Rows.Count == maxPeopleRuleValueInteger)
+            {
+                ViewData["Message"] = "Sorry but unfortunately due to COVID-19 retrictions the maximum amount of visitors has been reached for the day, Please Try Again Sometime Tommorow";
+                ViewData["MsgType"] = "danger";
+                return View("GantryEnter");
+            }
+
+
+
             DateTime Time_Now = DateTime.Now;
 
-            
             string sql = @"UPDATE Visitation SET Visitation.time_in = '{0}' WHERE Visitation.pin_number = '{1}'";
             string update = String.Format(sql, Time_Now, Pin_Num);
 
@@ -654,4 +593,3 @@ namespace C200.Controllers
         }
     }
 }
- 
