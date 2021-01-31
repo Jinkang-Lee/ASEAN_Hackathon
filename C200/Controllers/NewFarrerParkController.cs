@@ -516,6 +516,7 @@ namespace C200.Controllers
             string update = String.Format(sql, Time_Now, Pin_Num);
 
             int count = DBUtl.ExecSQL(update);
+            int expected = 0;
 
             if (count == 1)
             {
