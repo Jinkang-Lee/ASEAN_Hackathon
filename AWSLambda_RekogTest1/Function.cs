@@ -65,7 +65,7 @@ namespace AWSLambda_RekogTest1
 
                         //Ask help for this part
                         //Patient Database cannot be updated
-                        DBUtl.ExecSQL("UPDATE Patient SET Patient.visitor_in ={0} WHERE Patient.ward = '2' AND Patient.bed = '7'",count);
+                        DBUtl.ExecSQL("UPDATE Patient SET Patient.visitor_in ={0} WHERE Patient.ward = 'A5' AND Patient.bed = '8'",count);
                
       
 
